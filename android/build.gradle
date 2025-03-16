@@ -1,0 +1,52 @@
+buildscript {
+    ext.kotlin_version = '1.9.0'
+    repositories {
+        google()
+        mavenCentral()
+//        maven {
+//            url 'https://api.mapbox.com/downloads/v2/releases/maven'
+//            authentication {
+//                basic(BasicAuthentication)
+//            }
+//            credentials {
+//                // Do not change the username below
+//                username = 'mapbox'
+//                password = project.hasProperty('sk.eyJ1Ijoia3JvbmFocyIsImEiOiJjbHdxZHRobWgwMG83MmpyMW1lbmFwdXAyIn0.jq7bpyT43Cv7xUcvV1jKMg') ? project.property('sk.eyJ1Ijoia3JvbmFocyIsImEiOiJjbHdxZHRobWgwMG83MmpyMW1lbmFwdXAyIn0.jq7bpyT43Cv7xUcvV1jKMg') : ''
+//            }
+//        }
+    }
+
+    dependencies {
+        classpath "org.jetbrains.kotlin:kotlin-gradle-plugin:$kotlin_version"
+//        classpath 'com.mapbox.maps:mapbox-sdk:11.4.0'
+    }
+}
+allprojects {
+    repositories {
+        google()
+        mavenCentral()
+//        maven {
+//            url 'https://api.mapbox.com/downloads/v2/releases/maven'
+//            authentication {
+//                basic(BasicAuthentication)
+//            }
+//            credentials {
+//                // Do not change the username below
+//                username = 'mapbox'
+//                password = project.hasProperty('sk.eyJ1Ijoia3JvbmFocyIsImEiOiJjbHdxZHRobWgwMG83MmpyMW1lbmFwdXAyIn0.jq7bpyT43Cv7xUcvV1jKMg') ? project.property('sk.eyJ1Ijoia3JvbmFocyIsImEiOiJjbHdxZHRobWgwMG83MmpyMW1lbmFwdXAyIn0.jq7bpyT43Cv7xUcvV1jKMg') : ''
+//            }
+//        }
+    }
+}
+
+rootProject.buildDir = '../build'
+subprojects {
+    project.buildDir = "${rootProject.buildDir}/${project.name}"
+}
+subprojects {
+    project.evaluationDependsOn(':app')
+}
+
+tasks.register("clean", Delete) {
+    delete rootProject.buildDir
+}
